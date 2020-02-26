@@ -50,7 +50,7 @@ def lss(fpath):
 				seq_frames = [x for x in range(int_frames[0],int_frames[-1]+1)]
 				if len(seq_frames) == len(int_frames):
 					# files to replace the frame numbers in the print style specified
-					files = [y.replace(i,f"%0{str(len(i))}d") for i in frames_check for y in k]
+					files = [y.replace(i,"%0{0}d".format(str(len(i)))) for i in frames_check for y in k]
 					if len(files)>1:
 						summary_dict.update({tuple(files):{'frames':seq_frames}})
 					else: # for single files with number
@@ -69,6 +69,7 @@ def lss(fpath):
 			for i in range(len(frames_list)):
 				if frames_list[i][0] in k[0]:
 					files = [f for f in k if frames_list[i][0] in f]
+					rem_files = 12
 			print(files,'files')
 
 	return summary_dict
